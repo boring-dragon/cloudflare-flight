@@ -8,6 +8,7 @@ class AnalyticsController
 {
     public function analytics()
     {
+        //Response Utility
         $response = new Util();
 
         $defaultDriver = 'Files';
@@ -18,6 +19,7 @@ class AnalyticsController
             $client = new \Cloudflare\Api(getenv('CLOUDFLARE_EMAIL'), getenv('CLOUDFLARE_APIKEY'));
 
             $analytic = new \Cloudflare\Zone\Analytics($client);
+            //First argument is the zone id in the cloudflare.
             $array = json_decode(json_encode($analytic->dashboard('50515cfef4495e8bb32f79f6b28b1b54')), true);
 
             $index = $array["result"]["timeseries"][6];
